@@ -14,47 +14,53 @@
 	<p>Et un autre petit bout de texte après</p>
 	
 	<script>
+		
+		function getColor(d) {
+		    return d > 4 ? '#800026' :
+		           d > 3  ? '#E31A1C' :
+		           d > 2   ? '#FD8D3C' :
+		           d > 1   ? '#FED976' :
+		                      '#FFEDA0';
+		}
+				
 		var map = L.map('map').setView([46.345, -72.585], 16);
 		
 		const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				maxZoom: 19,
 				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-			}).addTo(map);
+			}).addTo(map);		
 		
-			function getColor(d) {
-			    return d > 4 ? '#800026' :
-			           d > 3  ? '#E31A1C' :
-			           d > 2   ? '#FD8D3C' :
-			           d > 1   ? '#FED976' :
-			                      '#FFEDA0';
-			}
+		indices_cles = ["Indice1","Indice2"];
+		indices_noms = ["Indice 1","Indice 2"];
 
+		var couches = []
+		for (i=0;i<indices_cles.length; i++ ) {
 			
-		var indice1 = L.geoJSON(layers_picom, {
+			cle = indices_cles[i];
+			
+			couche = L.geoJSON(layers_picom, {
     		style: function (feature) {
 				return {
-					fillColor: getColor(feature.properties.Indice1),
-					color: getColor(feature.properties.Indice1),
+					fillColor: getColor(feature.properties[cle]),
+					color: getColor(feature.properties[cle]),
 					fillOpacity: 0.7
 				};
 			}}).addTo(map);
-
-		var indice2 = L.geoJSON(layers_picom, {
-	    	style: function (feature) {
-				return {
-					fillColor: getColor(feature.properties.Indice2),
-					color: getColor(feature.properties.Indice2),
-					fillOpacity: 0.7
-				};
-			}}).addTo(map);
-
-			var couches = {
-			    "Indice 1": indice1,
-				"Indice 2": indice2
-			};
-
-
-		var layerControl = L.control.layers(couches).addTo(map);		
+			
+//			couches.push({indices_noms[i]:couche})
+			
+			
+			couches.push({cle:indices_noms[i]})
+						
+		}
+		
+		/*
+		var couches = {
+					    "Indice 1": indice1,
+						"Indice 2": indice2
+					};
+		*/		
+//		var layerControl = L.control.layers(couches).addTo(map);		
 		
 	</script>
 </body>
