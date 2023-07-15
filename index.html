@@ -47,20 +47,12 @@
 				};
 			}}).addTo(map);
 			
-//			couches.push({indices_noms[i]:couche})
 			
-			
-			couches.push({cle:indices_noms[i]})
-						
+			couches[indices_noms[i]] = couche
+									
 		}
 		
-		/*
-		var couches = {
-					    "Indice 1": indice1,
-						"Indice 2": indice2
-					};
-		*/		
-//		var layerControl = L.control.layers(couches).addTo(map);		
+		var layerControl = L.control.layers(couches).addTo(map);		
 		
 	</script>
 </body>
