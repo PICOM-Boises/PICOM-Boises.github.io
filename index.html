@@ -53,7 +53,11 @@
 					color: getColor(feature.properties[cle]),
 					fillOpacity: 0.7
 				};
-			}}).addTo(map);
+			}})
+			
+			couche.id = cle;
+			
+			couche.addTo(map);
 			
 			
 			couches[indices_noms[i]] = couche
@@ -63,14 +67,19 @@
 		var layerControl = L.control.layers(couches).addTo(map);
 		
 		map.on("layeradd",function(e) {
-			console.log("Changement de layer")
-			map.eachLayer(function(layer){
-			    if (map.hasLayer(layer)) {
-			    	console.log(layer+" est affiché.")
-					console.log(layer)
-			    }
-			});
+			
+			if (e.layer.id) { // L'événement se déclenche pour d'autres raisons?!
+				console.log(e.layer.id + " est affiché")
+			}
 		})
+		
+		// À conserver pour la couche calculée
+		/*			map.eachLayer(function(layer){
+					    if (map.hasLayer(layer)) {
+							console.log(layer.id+" est affiché")
+					    }
+					});*/
+		
 				
 	</script>
 </body>
