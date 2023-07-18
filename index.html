@@ -12,7 +12,15 @@
 	<p>Un petit texte avant la carte</p>
 	<div id="map" style="height:600px" ></div>
 	<p>Et un autre petit bout de texte après</p>
-	
+	<div class="legende" id="Indice1">
+		La légende du 1er indice
+	</div>
+	<div class="legende" id="Indice2">
+		La légende du 2e indice
+	</div>
+	<div class="legende" id="Combine">
+		Là où iront les sliders pour la couche combinée
+	</div>
 	<script>
 		
 		function getColor(d) {
@@ -52,7 +60,9 @@
 									
 		}
 		
-		var layerControl = L.control.layers(couches).addTo(map);		
+		var layerControl = L.control.layers(couches).addTo(map);
+		
+		// https://leafletjs.com/reference.html#map-event
 		
 	</script>
 </body>
