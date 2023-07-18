@@ -38,8 +38,8 @@
 				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 			}).addTo(map);		
 		
-		indices_cles = ["Indice1","Indice2"];
-		indices_noms = ["Indice 1","Indice 2"];
+		var indices_cles = ["Indice1","Indice2"];
+		var indices_noms = ["Indice 1","Indice 2"];
 
 		var couches = []
 		for (i=0;i<indices_cles.length; i++ ) {
@@ -62,8 +62,16 @@
 		
 		var layerControl = L.control.layers(couches).addTo(map);
 		
-		// https://leafletjs.com/reference.html#map-event
-		
+		map.on("layeradd",function(e) {
+			console.log("Changement de layer")
+			map.eachLayer(function(layer){
+			    if (map.hasLayer(layer)) {
+			    	console.log(layer+" est affiché.")
+					console.log(layer)
+			    }
+			});
+		})
+				
 	</script>
 </body>
 </html>
