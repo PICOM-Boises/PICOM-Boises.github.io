@@ -59,10 +59,7 @@
 			}})
 			
 			couche.id = cle;
-			
-			couche.addTo(map);
-			
-			
+						
 			couches[indices_noms[i]] = couche
 									
 		}
@@ -76,6 +73,9 @@
 				$("#"+e.layer.id).show();
 			}
 		})
+		
+		// Activer le 1er indice
+		couches[indices_noms[0]].addTo(map);
 		
 		// À conserver pour la couche calculée
 		/*			map.eachLayer(function(layer){
