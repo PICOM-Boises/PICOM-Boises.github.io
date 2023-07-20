@@ -9,10 +9,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 </head>
 <body>
-	<h1>Projet PICOM boisés UQTR</h1>
-	<p>Un petit texte avant la carte</p>
-	<div id="map" style="height:600px" ></div>
-	<p>Et un autre petit bout de texte après</p>
+<h1>Projet PICOM boisés UQTR</h1>
+<p>Un petit texte avant la carte</p>
+<div id="map" style="height:600px" ></div>
+<p>Et un autre petit bout de texte après</p>
 	<div class="legende" id="Indice1">
 		La légende du 1er indice
 	</div>
@@ -26,7 +26,6 @@
 	</div>
 	<script>
 				
-		// PRÉPARATION DE LA CARTE À PARTIR DU GEOJSON
 		function getColor(d) {
 		    return d > 4 ? '#800026' :
 		           d > 3  ? '#E31A1C' :
@@ -41,18 +40,29 @@
 				maxZoom: 19,
 				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 			}).addTo(map);		
-		
-		
-		// CRÉER UNE COUCHE À PARTIR DES VALEURS DE SLIDERS ET DES INDICES DANS LE GEOJSON
-	
-		for (feature of layers_picom.features) {
-			// Pour commencer, sans utiliser les sliders, juste en faisant une moyenne
-			feature.properties.Combine = feature.properties.Indice1 + feature.properties.Indice2 / 2;
-		}
-				
+
 		var indices_cles = ["Indice1","Indice2","Combine"];
 		var indices_noms = ["Indice 1","Indice 2","Indices combinés"];
 
+		let mise_a_jour_indice_combine = function() {
+			for (feature of layers_picom.features) {
+			
+				let combine=0;
+				for (indice of indices_cles) {
+					if (indice != 'Combine') {
+						combine += feature.properties[indice] * $('input[type=range]#'+indice)[0].value / 100;
+					}
+				}
+						
+				feature.properties.Combine = combine / (indices_cles.length-1);
+				
+				console.log(feature.properties.Combine)
+			}
+			
+		}
+	
+		mise_a_jour_indice_combine();
+	
 		var couches = []
 		for (i=0;i<indices_cles.length; i++ ) {
 			
@@ -75,7 +85,6 @@
 		
 		var layerControl = L.control.layers(couches).addTo(map);
 	
-		// CONNECTER LES LÉGENDES AU CHANGEMENT D'INDICE SUR LA CARTE
 		$(".legende").hide();
 		
 		map.on("layeradd",function(e) {
@@ -89,13 +98,8 @@
 		// Activer le 1er indice
 		couches[indices_noms[0]].addTo(map);
 			
-		$('input[type=range]').on("change",function(){
-			
-			let sliders = $('input[type=range]');
-			for (slider of sliders) {
-				console.log(slider.id + " = " + slider.value)
-			}
-			
+		$('input[type=range]').on("change",function(){				
+			mise_a_jour_indice_combine();			
 		})
 				
 	</script>
