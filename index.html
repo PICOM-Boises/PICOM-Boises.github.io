@@ -42,8 +42,16 @@
 				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 			}).addTo(map);		
 		
-		var indices_cles = ["Indice1","Indice2"];
-		var indices_noms = ["Indice 1","Indice 2"];
+		
+		// CRÉER UNE COUCHE À PARTIR DES VALEURS DE SLIDERS ET DES INDICES DANS LE GEOJSON
+	
+		for (feature of layers_picom.features) {
+			// Pour commencer, sans utiliser les sliders, juste en faisant une moyenne
+			feature.properties.Combine = feature.properties.Indice1 + feature.properties.Indice2 / 2;
+		}
+				
+		var indices_cles = ["Indice1","Indice2","Combine"];
+		var indices_noms = ["Indice 1","Indice 2","Indices combinés"];
 
 		var couches = []
 		for (i=0;i<indices_cles.length; i++ ) {
@@ -80,21 +88,7 @@
 		
 		// Activer le 1er indice
 		couches[indices_noms[0]].addTo(map);
-	
-		// CRÉER UNE COUCHE À PARTIR DES VALEURS DE SLIDERS ET DES INDICES DANS LE GEOJSON
-		
-		let layer_combinee = {
-			"type": "FeatureCollection",
-			"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-			"features": []
-		}
-		
-		for (feature of layers_picom.features) {
-			// Pour commencer, juste avec la moyenne des deux valeurs
-			feature.properties.Combine = feature.properties.Indice1 + feature.properties.Indice2 / 2;
-			layer_combinee.features.push(feature);
-		}
-		
+			
 		$('input[type=range]').on("change",function(){
 			
 			let sliders = $('input[type=range]');
