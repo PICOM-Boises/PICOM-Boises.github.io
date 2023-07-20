@@ -46,9 +46,7 @@
 
 		let mise_a_jour_indice_combine = function() {
 			for (feature of layers_picom.features) {
-			
-				console.log(feature.properties.Name)
-			
+						
 				let somme_valeurs = 0;
 				let somme_poids = 0;
 				
@@ -78,7 +76,7 @@
 				return {
 					fillColor: getColor(feature.properties[cle]),
 					color: getColor(feature.properties[cle]),
-					fillOpacity: 0.7
+					fillOpacity: 0.5
 				};
 			}})
 			
@@ -90,7 +88,7 @@
 		
 		var layerControl = L.control.layers(couches).addTo(map);
 	
-		$(".legende").hide();
+/*		$(".legende").hide();
 		
 		map.on("layeradd",function(e) {
 			
@@ -102,20 +100,39 @@
 		
 		// Activer le 1er indice
 		couches[indices_noms[0]].addTo(map);
+*/		
+		
+		// TEMPORAIRE POUR TESTER
+		couches[indices_noms[2]].addTo(map);	
+		
+		$('input[type=range]').on("change",function(){							
 			
-		$('input[type=range]').on("change",function(){				
 			mise_a_jour_indice_combine();			
 			
+			map.eachLayer(function(layer){
+			    //layer.bindPopup('Hello');
+				
+				if (layer.id == "Combine") {
+					console.log(layer.features)
+				}
+			});
+
+			/*
 			let couche = L.geoJSON(layers_picom, {
     		style: function (feature) {
 				return {
 					fillColor: getColor(feature.properties['Combine']),
 					color: getColor(feature.properties['Combine']),
-					fillOpacity: 0.7
+					fillOpacity: 0.5
 				};
 			}})
-			couche.id = 'Combine';
-			couche.addTo(map);
+			couche.id = 'Indices combinés';
+			
+			couches['Indices combinés'].remove();
+			couche.addTo(map);			
+			L.control.layers(couche).addTo(map);
+			
+			*/
 		})
 				
 	</script>
