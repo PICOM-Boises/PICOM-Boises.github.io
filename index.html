@@ -36,14 +36,14 @@
 		                      '#FFEDA0';
 		}
 				
-		var map = L.map('map').setView([46.345, -72.585], 16);
+		let map = L.map('map').setView([46.345, -72.585], 16);
 		
 		const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				maxZoom: 19,
 				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 			}).addTo(map);		
 
-		var indices = {
+		let indices = {
 			Indice1:"Indice 1",
 			Indice2:"Indice 2",
 			Combine:etiquette_indices_combines
@@ -71,7 +71,7 @@
 	
 		mise_a_jour_indice_combine();
 		
-		var couches = []
+		let couches = []
 		cles = Object.keys(indices);
 		for (i=0;i<cles.length; i++ ) {
 			
@@ -92,7 +92,7 @@
 									
 		}
 		
-		var layerControl = L.control.layers(couches).addTo(map);
+		let layerControl = L.control.layers(couches).addTo(map);
 	
 		$(".legende").hide();
 		
