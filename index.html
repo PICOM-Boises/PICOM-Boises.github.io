@@ -13,21 +13,20 @@
 	<p>Un petit texte avant la carte</p>
 	<div id="map" style="height:600px" ></div>
 	<p>Et un autre petit bout de texte après</p>
-<!--	<div class="legende" id="Indice1">
+	<div class="legende" id="Indice1">
 		La légende du 1er indice
 	</div>
 	<div class="legende" id="Indice2">
 		La légende du 2e indice
-	</div> -->
-	<div class="" id="Combine">
+	</div>
+	<div class="legende" id="Combine">
 		Importance à donner à chaque indice pour le combiné : <br />
 		Indice 1 : <input type="range" id="Indice1"/><br />
 		Indice 2 : <input type="range" id="Indice2"/><br />
 	</div>
 	<script>
-		
-		$(".legende").hide();
-		
+				
+		// PRÉPARATION DE LA CARTE À PARTIR DU GEOJSON
 		function getColor(d) {
 		    return d > 4 ? '#800026' :
 		           d > 3  ? '#E31A1C' :
@@ -67,6 +66,9 @@
 		}
 		
 		var layerControl = L.control.layers(couches).addTo(map);
+	
+		// CONNECTER LES LÉGENDES AU CHANGEMENT D'INDICE SUR LA CARTE
+		$(".legende").hide();
 		
 		map.on("layeradd",function(e) {
 			
@@ -78,13 +80,20 @@
 		
 		// Activer le 1er indice
 		couches[indices_noms[0]].addTo(map);
+	
+		// CRÉER UNE COUCHE À PARTIR DES VALEURS DE SLIDERS ET DES INDICES DANS LE GEOJSON
 		
-		// À conserver pour la couche calculée
-		/*			map.eachLayer(function(layer){
-					    if (map.hasLayer(layer)) {
-							console.log(layer.id+" est affiché")
-					    }
-					});*/
+		let layer_combinee = {
+			"type": "FeatureCollection",
+			"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+			"features": []
+		}
+		
+		for (feature of layers_picom.features) {
+			// Pour commencer, juste avec la moyenne des deux valeurs
+			feature.properties.Combine = feature.properties.Indice1 + feature.properties.Indice2 / 2;
+			layer_combinee.features.push(feature);
+		}
 		
 		$('input[type=range]').on("change",function(){
 			
