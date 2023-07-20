@@ -109,15 +109,6 @@
 			
 			mise_a_jour_indice_combine();			
 			
-			map.eachLayer(function(layer){
-			    //layer.bindPopup('Hello');
-				
-				if (layer.id == "Combine") {
-					console.log(layer.features)
-				}
-			});
-
-			/*
 			let couche = L.geoJSON(layers_picom, {
     		style: function (feature) {
 				return {
@@ -125,14 +116,17 @@
 					color: getColor(feature.properties['Combine']),
 					fillOpacity: 0.5
 				};
-			}})
-			couche.id = 'Indices combinés';
+			}})			
 			
-			couches['Indices combinés'].remove();
-			couche.addTo(map);			
-			L.control.layers(couche).addTo(map);
+			layerControl.removeLayer(couches['Indices combinés']);
+			map.removeLayer(couches['Indices combinés']);
 			
-			*/
+			couches['Indices combinés'] = couche;
+					
+			map.addLayer(couches['Indices combinés'],"Indices combinés");
+			layerControl.addBaseLayer(couches['Indices combinés'],"Indices combinés");
+			
+			
 		})
 				
 	</script>
