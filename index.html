@@ -43,8 +43,11 @@
 				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 			}).addTo(map);		
 
-		var indices_cles = ["Indice1","Indice2","Combine"];
-		var indices_noms = ["Indice 1","Indice 2",etiquette_indices_combines];
+		var indices = {
+			Indice1:"Indice 1",
+			Indice2:"Indice 2",
+			Combine:etiquette_indices_combines
+		}
 
 		let mise_a_jour_indice_combine = function() {
 			for (feature of layers_picom.features) {
@@ -52,7 +55,7 @@
 				let somme_valeurs = 0;
 				let somme_poids = 0;
 				
-				for (indice of indices_cles) {
+				for (indice of Object.keys(indices)) {
 					if (indice != 'Combine') {											
 						somme_valeurs += feature.properties[indice] * Number($('input[type=range]#'+indice)[0].value);
 						
@@ -69,9 +72,10 @@
 		mise_a_jour_indice_combine();
 		
 		var couches = []
-		for (i=0;i<indices_cles.length; i++ ) {
+		cles = Object.keys(indices);
+		for (i=0;i<cles.length; i++ ) {
 			
-			cle = indices_cles[i];
+			cle = cles[i];
 			
 			couche = L.geoJSON(layers_picom, {
     		style: function (feature) {
@@ -84,7 +88,7 @@
 			
 			couche.id = cle;
 						
-			couches[indices_noms[i]] = couche
+			couches[indices[cle]] = couche
 									
 		}
 		
@@ -101,7 +105,7 @@
 		})
 		
 		// Activer le 1er indice
-		couches[indices_noms[0]].addTo(map);
+		couches[indices["Indice1"]].addTo(map);
 		
 				
 		$('input[type=range]').on("change",function(){							
