@@ -13,14 +13,16 @@
 	<p>Un petit texte avant la carte</p>
 	<div id="map" style="height:600px" ></div>
 	<p>Et un autre petit bout de texte après</p>
-	<div class="legende" id="Indice1">
+<!--	<div class="legende" id="Indice1">
 		La légende du 1er indice
 	</div>
 	<div class="legende" id="Indice2">
 		La légende du 2e indice
-	</div>
-	<div class="legende" id="Combine">
-		Là où iront les sliders pour la couche combinée
+	</div> -->
+	<div class="" id="Combine">
+		Importance à donner à chaque indice pour le combiné : <br />
+		Indice 1 : <input type="range" id="Indice1"/><br />
+		Indice 2 : <input type="range" id="Indice2"/><br />
 	</div>
 	<script>
 		
@@ -84,6 +86,14 @@
 					    }
 					});*/
 		
+		$('input[type=range]').on("change",function(){
+			
+			let sliders = $('input[type=range]');
+			for (slider of sliders) {
+				console.log(slider.id + " = " + slider.value)
+			}
+			
+		})
 				
 	</script>
 </body>
