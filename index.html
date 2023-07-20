@@ -47,16 +47,21 @@
 		let mise_a_jour_indice_combine = function() {
 			for (feature of layers_picom.features) {
 			
-				let combine=0;
+				console.log(feature.properties.Name)
+			
+				let somme_valeurs = 0;
+				let somme_poids = 0;
+				
 				for (indice of indices_cles) {
-					if (indice != 'Combine') {
-						combine += feature.properties[indice] * $('input[type=range]#'+indice)[0].value / 100;
+					if (indice != 'Combine') {											
+						somme_valeurs += feature.properties[indice] * Number($('input[type=range]#'+indice)[0].value);
+						
+						somme_poids += Number($('input[type=range]#'+indice)[0].value);
 					}
 				}
-						
-				feature.properties.Combine = combine / (indices_cles.length-1);
 				
-				console.log(feature.properties.Combine)
+				feature.properties.Combine = somme_valeurs / somme_poids
+				
 			}
 			
 		}
