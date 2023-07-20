@@ -88,7 +88,7 @@
 		
 		var layerControl = L.control.layers(couches).addTo(map);
 	
-/*		$(".legende").hide();
+		$(".legende").hide();
 		
 		map.on("layeradd",function(e) {
 			
@@ -100,11 +100,8 @@
 		
 		// Activer le 1er indice
 		couches[indices_noms[0]].addTo(map);
-*/		
 		
-		// TEMPORAIRE POUR TESTER
-		couches[indices_noms[2]].addTo(map);	
-		
+				
 		$('input[type=range]').on("change",function(){							
 			
 			mise_a_jour_indice_combine();			
