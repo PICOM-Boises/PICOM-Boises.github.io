@@ -25,7 +25,9 @@
 		Indice 2 : <input type="range" id="Indice2"/><br />
 	</div>
 	<script>
-				
+		
+		const etiquette_indices_combines = "Indices combinés"
+		
 		function getColor(d) {
 		    return d > 4 ? '#800026' :
 		           d > 3  ? '#E31A1C' :
@@ -42,7 +44,7 @@
 			}).addTo(map);		
 
 		var indices_cles = ["Indice1","Indice2","Combine"];
-		var indices_noms = ["Indice 1","Indice 2","Indices combinés"];
+		var indices_noms = ["Indice 1","Indice 2",etiquette_indices_combines];
 
 		let mise_a_jour_indice_combine = function() {
 			for (feature of layers_picom.features) {
@@ -65,7 +67,7 @@
 		}
 	
 		mise_a_jour_indice_combine();
-	
+		
 		var couches = []
 		for (i=0;i<indices_cles.length; i++ ) {
 			
@@ -116,13 +118,13 @@
 			}})	
 			couche.id = "Combine";
 			
-			layerControl.removeLayer(couches['Indices combinés']);
-			map.removeLayer(couches['Indices combinés']);
+			layerControl.removeLayer(couches[etiquette_indices_combines]);
+			map.removeLayer(couches[etiquette_indices_combines]);
 			
-			couches['Indices combinés'] = couche;
+			couches[etiquette_indices_combines] = couche;
 					
-			map.addLayer(couches['Indices combinés'],"Indices combinés");
-			layerControl.addBaseLayer(couches['Indices combinés'],"Indices combinés");
+			map.addLayer(couches[etiquette_indices_combines],etiquette_indices_combines);
+			layerControl.addBaseLayer(couches[etiquette_indices_combines],etiquette_indices_combines);
 			
 			
 		})
