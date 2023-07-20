@@ -100,6 +100,17 @@
 			
 		$('input[type=range]').on("change",function(){				
 			mise_a_jour_indice_combine();			
+			
+			let couche = L.geoJSON(layers_picom, {
+    		style: function (feature) {
+				return {
+					fillColor: getColor(feature.properties['Combine']),
+					color: getColor(feature.properties['Combine']),
+					fillOpacity: 0.7
+				};
+			}})
+			couche.id = 'Combine';
+			couche.addTo(map);
 		})
 				
 	</script>
