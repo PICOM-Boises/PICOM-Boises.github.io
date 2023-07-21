@@ -5,7 +5,7 @@
 	<title>Projet PICOM boisés UQTR</title> 
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-	<script src="Test2.geojson"></script>
+	<script src="indice_ecosyst_FeaturesToJSO.geojson"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 </head>
 <body>
@@ -23,6 +23,8 @@
 		Importance à donner à chaque indice pour le combiné : <br />
 	</div>
 	<script>
+
+		// "properties":{"OBJECTID":1,"Catégorie":"Forestier","Type":"Pinède grise","zone_echan":23,"Field":0,"permeabilité":5,"carbone":4,"biodiversite":2,"temperature":3,"Indice":3.5,"Shape_Length":4477.8209635709882,"Shape_Area":81258.039305174549}
 
 		const etiquette_indices_combines = "Indices combinés"
 		
@@ -42,8 +44,12 @@
 			}).addTo(map);		
 
 		let indices = {
-			Indice1:"Indice 1",
-			Indice2:"Indice 2",
+			/*Indice1:"Indice 1",
+			Indice2:"Indice 2",*/
+//			permeabilité:"Perméabilité",
+			carbone:"Carbone",
+			biodiversite:"Biodiversité",
+			temperature:"Température",
 			Combine:etiquette_indices_combines
 		}
 		
@@ -52,8 +58,6 @@
 				$('.legende#Combine').append(`${etiquette} : <input type="range" id="${cle}"/><br />`);
 			}
 		}
-		
-
 
 		let mise_a_jour_indice_combine = function() {
 			for (feature of layers_picom.features) {
@@ -111,7 +115,7 @@
 		})
 		
 		// Activer le 1er indice
-		couches[indices["Indice1"]].addTo(map);
+		couches[indices["carbone"]].addTo(map);
 		
 				
 		$('input[type=range]').on("change",function(){							
