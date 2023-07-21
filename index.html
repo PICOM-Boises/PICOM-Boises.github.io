@@ -21,11 +21,9 @@
 	</div>
 	<div class="legende" id="Combine">
 		Importance à donner à chaque indice pour le combiné : <br />
-		Indice 1 : <input type="range" id="Indice1"/><br />
-		Indice 2 : <input type="range" id="Indice2"/><br />
 	</div>
 	<script>
-		
+
 		const etiquette_indices_combines = "Indices combinés"
 		
 		function getColor(d) {
@@ -48,6 +46,14 @@
 			Indice2:"Indice 2",
 			Combine:etiquette_indices_combines
 		}
+		
+		for (let [cle,etiquette] of Object.entries(indices)) {
+			if (cle != "Combine") {
+				$('.legende#Combine').append(`${etiquette} : <input type="range" id="${cle}"/><br />`);
+			}
+		}
+		
+
 
 		let mise_a_jour_indice_combine = function() {
 			for (feature of layers_picom.features) {
