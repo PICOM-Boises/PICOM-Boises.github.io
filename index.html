@@ -13,12 +13,15 @@
 <p>Un petit texte avant la carte</p>
 <div id="map" style="height:600px" ></div>
 <p>Et un autre petit bout de texte après</p>
-	<div class="legende" id="Indice1">
-		La légende du 1er indice
+	<div class="legende" id="carbone">
+		Légende de l'indice Carbone
 	</div>
-	<div class="legende" id="Indice2">
-		La légende du 2e indice
+	<div class="legende" id="biodiversite">
+		Légende de l'indice biodiversité
 	</div>
+	<div class="legende" id="temperature">
+		Légende de l'indice température
+	</div>	
 	<div class="legende" id="Combine">
 		Importance à donner à chaque indice pour le combiné : <br />
 	</div>
@@ -36,7 +39,7 @@
 		                      '#FFEDA0';
 		}
 				
-		let map = L.map('map').setView([46.345, -72.585], 16);
+		let map = L.map('map').setView([46.345, -72.580], 15);
 		
 		const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				maxZoom: 19,
@@ -44,9 +47,6 @@
 			}).addTo(map);		
 
 		let indices = {
-			/*Indice1:"Indice 1",
-			Indice2:"Indice 2",*/
-//			permeabilité:"Perméabilité",
 			carbone:"Carbone",
 			biodiversite:"Biodiversité",
 			temperature:"Température",
