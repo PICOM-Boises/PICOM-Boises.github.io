@@ -33,12 +33,44 @@
 		
 		const fillOpacity = 0.75;
 		
-		function getColor(d) {
+		function getColorGradient(d) {
 		    return d > 4 ? '#800026' :
 		           d > 3  ? '#E31A1C' :
 		           d > 2   ? '#FD8D3C' :
 		           d > 1   ? '#FED976' :
 		                      '#FFEDA0';
+		}
+		
+		function getColorES(d) {
+			
+			switch(d) {
+			case "Pinède grise" : 
+				return "#4a711a";
+			case "Jeune Pinède blanche" : 
+				return "#cf2b30";
+			case "Mixte" : 
+				return "#4b3aba";
+			case "Mixte suranné" : 
+				return "#0081a6";
+			case "Pinède blanche à pin gris" : 
+				return "#95e2c3";
+			case "Pinède Sylvestre" : 
+				return "#9f523d";
+			case "Vieille pinède blanche" : 
+				return "#ee962a";
+			case "Pessière norvégienne" : 
+				return "#27c8c2";
+			case "Milieu humide" : 
+				return "#00c47c";
+			case "Pelouse arborée" : 
+				return "#fff";
+			case "Surface minéralisée" : 
+				return "#ccc";
+			case "Pelouse" : 
+				return "#fffc47";
+			default : 
+				return "#000";
+			}
 		}
 				
 		let map = L.map('map').setView([46.345, -72.580], 15);
@@ -49,6 +81,7 @@
 			}).addTo(map);		
 
 		let indices = {
+			Type:"Écosystèmes",
 			carbone:"Carbone",
 			biodiversite:"Biodiversité",
 			temperature:"Température",
@@ -56,7 +89,7 @@
 		}
 		
 		for (let [cle,etiquette] of Object.entries(indices)) {
-			if (cle != "Combine") {
+			if (cle != "Combine" && cle != "Type") {
 				$('.legende#Combine').append(`${etiquette} : <input type="range" id="${cle}"/><br />`);
 			}
 		}
@@ -68,7 +101,7 @@
 				let somme_poids = 0;
 				
 				for (indice of Object.keys(indices)) {
-					if (indice != 'Combine') {											
+					if (indice != 'Combine' && indice != "Type") {
 						somme_valeurs += feature.properties[indice] * Number($('input[type=range]#'+indice)[0].value);
 						
 						somme_poids += Number($('input[type=range]#'+indice)[0].value);
@@ -88,12 +121,19 @@
 		for (i=0;i<cles.length; i++ ) {
 			
 			cle = cles[i];
-			
+						
 			couche = L.geoJSON(layers_picom, {
     		style: function (feature) {
+				
+				if (cle == "Type") {				
+					color_function = getColorES(feature.properties[cle]);
+				} else {
+					color_function = getColorGradient(feature.properties[cle]);
+				}
+				
 				return {
-					fillColor: getColor(feature.properties[cle]),
-					color: getColor(feature.properties[cle]),
+					fillColor: color_function,
+					color: color_function,
 					fillOpacity: fillOpacity
 				};
 			}})
@@ -116,8 +156,8 @@
 			}
 		})
 		
-		// Activer le 1er indice
-		couches[indices["carbone"]].addTo(map);
+		// Par défaut, activer la carte des écosystèmes
+		couches[indices["Type"]].addTo(map);
 		
 				
 		$('input[type=range]').on("change",function(){							
@@ -127,8 +167,8 @@
 			let couche = L.geoJSON(layers_picom, {
     		style: function (feature) {
 				return {
-					fillColor: getColor(feature.properties['Combine']),
-					color: getColor(feature.properties['Combine']),
+					fillColor: getColorGradient(feature.properties['Combine']),
+					color: getColorGradient(feature.properties['Combine']),
 					fillOpacity: fillOpacity
 				};
 			}})	
