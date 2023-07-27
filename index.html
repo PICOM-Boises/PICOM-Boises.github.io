@@ -31,6 +31,8 @@
 
 		const etiquette_indices_combines = "Indices combinés"
 		
+		const fillOpacity = 0.75;
+		
 		function getColor(d) {
 		    return d > 4 ? '#800026' :
 		           d > 3  ? '#E31A1C' :
@@ -92,7 +94,7 @@
 				return {
 					fillColor: getColor(feature.properties[cle]),
 					color: getColor(feature.properties[cle]),
-					fillOpacity: 0.5
+					fillOpacity: fillOpacity
 				};
 			}})
 			
@@ -127,7 +129,7 @@
 				return {
 					fillColor: getColor(feature.properties['Combine']),
 					color: getColor(feature.properties['Combine']),
-					fillOpacity: 0.5
+					fillOpacity: fillOpacity
 				};
 			}})	
 			couche.id = "Combine";
