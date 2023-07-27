@@ -41,36 +41,23 @@
 		                      '#FFEDA0';
 		}
 		
+		const liste_couleurs_ecosystemes = {
+			"Pinède grise" : "#4a711a",
+			"Jeune Pinède blanche" : "#cf2b30",
+			"Mixte": "#4b3aba",
+			"Mixte suranné" : "#0081a6",
+			"Pinède blanche à pin gris" : "#95e2c3",
+			"Pinède Sylvestre" : "#9f523d",
+			"Vieille pinède blanche" : "#ee962a",
+			"Pessière norvégienne" : "#27c8c2",
+			"Milieu humide" : "#00c47c",
+			"Pelouse arborée" : "#fff",
+			"Surface minéralisée" : "#ccc",
+			"Pelouse" : "#fffc47"			
+		}
+		
 		function getColorES(d) {
-			
-			switch(d) {
-			case "Pinède grise" : 
-				return "#4a711a";
-			case "Jeune Pinède blanche" : 
-				return "#cf2b30";
-			case "Mixte" : 
-				return "#4b3aba";
-			case "Mixte suranné" : 
-				return "#0081a6";
-			case "Pinède blanche à pin gris" : 
-				return "#95e2c3";
-			case "Pinède Sylvestre" : 
-				return "#9f523d";
-			case "Vieille pinède blanche" : 
-				return "#ee962a";
-			case "Pessière norvégienne" : 
-				return "#27c8c2";
-			case "Milieu humide" : 
-				return "#00c47c";
-			case "Pelouse arborée" : 
-				return "#fff";
-			case "Surface minéralisée" : 
-				return "#ccc";
-			case "Pelouse" : 
-				return "#fffc47";
-			default : 
-				return "#000";
-			}
+			return liste_couleurs_ecosystemes[d];
 		}
 				
 		let map = L.map('map').setView([46.345, -72.580], 15);
