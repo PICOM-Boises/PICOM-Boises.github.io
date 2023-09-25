@@ -5,7 +5,7 @@
 	<title>Projet PICOM boisés UQTR</title> 
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-	<script src="indice_eco.geojson"></script>
+	<script src="indice_geojson.json"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 </head>
 <body>
@@ -68,11 +68,32 @@
 			}).addTo(map);		
 
 		let indices = {
+			/*
 			Type:"Écosystèmes",
 			carbone:"Carbone",
 			biodiversite:"Biodiversité",
 			temperature:"Température",
-			Combine:etiquette_indices_combines
+			Combine:etiquette_indices_combines*/
+
+			Type:"Écosystèmes",
+			S_Permeabilite:"Service : Perméabilité",
+			S_Temperature:"Service : Température",
+			S_Carbone:"Service : Carbone",
+			S_Biodiversite:"Service : Biodiversité",
+			S_Culturel:"Service : Culturel",
+			S_Champignon:"Service : Champignons",
+
+			S_Indice_global:"Indice global services",
+
+			R_Depots_de_neige:"Risque : Dépôts de neige",
+			R_Intemperie:"Risque : Intempéries",
+			R_Maladies:"Risque : Maladies",
+			R_Especes_envahissantes:"Risque : Espèces envahissantes",
+
+			R_Mortalite:"Risque : Mortalité",
+
+			R_Indice_global:"Indice global risques",
+
 		}
 		
 		for (let [cle,etiquette] of Object.entries(indices)) {
