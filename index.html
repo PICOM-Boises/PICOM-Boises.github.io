@@ -68,31 +68,25 @@
 			}).addTo(map);		
 
 		let indices = {
-			/*
-			Type:"Écosystèmes",
-			carbone:"Carbone",
-			biodiversite:"Biodiversité",
-			temperature:"Température",
-			Combine:etiquette_indices_combines*/
 
 			Type:"Écosystèmes",
-			S_Permeabilite:"Service : Perméabilité",
-			S_Temperature:"Service : Température",
-			S_Carbone:"Service : Carbone",
-			S_Biodiversite:"Service : Biodiversité",
-			S_Culturel:"Service : Culturel",
-			S_Champignon:"Service : Champignons",
+			"Indice perméabilité":"Service : Perméabilité",
+			"Indice température":"Service : Température",
+			"Indice carbone":"Service : Carbone",
+			"Indice biodiversité":"Service : Biodiversité",
+			"Indice service culturel":"Service : Culturel",
+			"Indice champignons":"Service : Champignons",
 
-			S_Indice_global:"Indice global services",
+			"Indice écosystémique global":"Indice global services",
 
-			R_Depots_de_neige:"Risque : Dépôts de neige",
-			R_Intemperie:"Risque : Intempéries",
-			R_Maladies:"Risque : Maladies",
-			R_Especes_envahissantes:"Risque : Espèces envahissantes",
+			"Indice dépots de neige":"Risque : Dépôts de neige",
+			"Indice intempéries":"Risque : Intempéries",
+			"Indice maladies":"Risque : Maladies",
+			"Indice espèces envahissantes":"Risque : Espèces envahissantes",
 
-			R_Mortalite:"Risque : Mortalité",
+			"Indice mortalité":"Risque : Mortalité",
 
-			R_Indice_global:"Indice global risques",
+			"Indice de risque global":"Indice global risques",
 
 		}
 		
@@ -122,7 +116,7 @@
 			
 		}
 	
-		mise_a_jour_indice_combine();
+		//mise_a_jour_indice_combine();
 		
 		let couches = []
 		cles = Object.keys(indices);
