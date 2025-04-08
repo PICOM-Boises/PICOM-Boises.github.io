@@ -90,8 +90,10 @@
 
 		}
 		
+		let a_enlever = ["Type", "Indice écosystémique global", "Indice de risque global","Combine"]
+		
 		for (let [cle,etiquette] of Object.entries(indices)) {
-			if (cle != "Combine" && cle != "Type") {
+			if (!(a_enlever.includes(cle))) {
 				$('.legende#Combine').append(`${etiquette} : <input type="range" id="${cle}"/><br />`);
 			}
 		}
@@ -103,7 +105,10 @@
 				let somme_poids = 0;
 				
 				for (indice of Object.keys(indices)) {
-					if (indice != 'Combine' && indice != "Type") {
+					if (!(a_enlever.includes(indice))) {
+						console.log("indice:" + indice)
+						console.log("property:" + feature.properties[indice])
+						console.log("value:" + $('input[type=range]#'+indice)[0].value)
 						somme_valeurs += feature.properties[indice] * Number($('input[type=range]#'+indice)[0].value);
 						
 						somme_poids += Number($('input[type=range]#'+indice)[0].value);
@@ -116,7 +121,7 @@
 			
 		}
 	
-		//mise_a_jour_indice_combine();
+		mise_a_jour_indice_combine();
 		
 		let couches = []
 		cles = Object.keys(indices);
