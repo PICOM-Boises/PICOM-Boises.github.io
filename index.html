@@ -13,8 +13,9 @@
 <p>Un petit texte avant la carte</p>
 <div id="map" style="height:600px" ></div>
 <p>Et un autre petit bout de texte après</p>
-	<div class="legende" id="carbone">
-		Texte de l'indice Carbone
+	<div class="legende" id="indice_carbone">
+		Service de régulation. Les arbres captent le carbone atmosphérique et le stockent dans leur biomasse et les horizons profonds du sol, contribuant à la lutte contre les gaz à effet de serre.
+		Données utilisées : Inventaires réalisés en 2016 et 2023 sur 36 parcelles de 400 m², incluant des mesures de diamètre à hauteur de poitrine (DHP) et des équations allométriques. Trois indicateurs composent l’indice : variation de carbone accumulé, productivité annuelle moyenne et stock de biomasse.
 	</div>
 	<div class="legende" id="biodiversite">
 		Texte de l'indice biodiversité
@@ -169,8 +170,11 @@
 		map.on("layeradd",function(e) {
 			
 			if (e.layer.id) { // L'événement se déclenche pour d'autres raisons?!				
+				
+				console.log(cleanToId(e.layer.id))
+				
 				$(".legende").hide();
-				$("#"+e.layer.id).show();
+				$("#"+cleanToId(e.layer.id)).show();
 				
 				if (e.layer.id != "Type") {
 					$(".echelle_couleurs").show();
