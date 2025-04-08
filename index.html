@@ -59,6 +59,16 @@
 		function getColorES(d) {
 			return liste_couleurs_ecosystemes[d];
 		}
+		
+		function cleanToId(str) {
+		  return str
+		    .toLowerCase()                                      // Convert to lowercase.
+		    .normalize('NFD')                                   // Decompose accented letters.
+		    .replace(/[\u0300-\u036f]/g, '')                    // Remove diacritical marks.
+		    .trim()                                             // Remove leading/trailing whitespace.
+		    .replace(/\s+/g, '_')                               // Replace spaces with hyphens.
+		    .replace(/[^a-z0-9\-_:.]/g, '');                     // Remove any non-allowed characters.
+		}
 				
 		let map = L.map('map').setView([46.345, -72.580], 15);
 		
@@ -93,8 +103,8 @@
 		let a_enlever = ["Type", "Indice écosystémique global", "Indice de risque global","Combine"]
 		
 		for (let [cle,etiquette] of Object.entries(indices)) {
-			if (!(a_enlever.includes(cle))) {
-				$('.legende#Combine').append(`${etiquette} : <input type="range" id="${cle}"/><br />`);
+			if (!(a_enlever.map(cleanToId).includes(cleanToId(cle)))) {
+				$('.legende#Combine').append(`${etiquette} : <input type="range" id="${cleanToId(cle)}"/><br />`);
 			}
 		}
 
@@ -106,12 +116,12 @@
 				
 				for (indice of Object.keys(indices)) {
 					if (!(a_enlever.includes(indice))) {
-						console.log("indice:" + indice)
-						console.log("property:" + feature.properties[indice])
-						console.log("value:" + $('input[type=range]#'+indice)[0].value)
-						somme_valeurs += feature.properties[indice] * Number($('input[type=range]#'+indice)[0].value);
+						//console.log("indice:" + indice)
+						//console.log("property:" + feature.properties[indice])
+						//console.log("value:" + $('input[type=range]#'+cleanToId(indice))[0].value)
+						somme_valeurs += feature.properties[indice] * Number($('input[type=range]#'+cleanToId(indice))[0].value);
 						
-						somme_poids += Number($('input[type=range]#'+indice)[0].value);
+						somme_poids += Number($('input[type=range]#'+cleanToId(indice))[0].value);
 					}
 				}
 				
