@@ -13,16 +13,64 @@
 <p>Un petit texte avant la carte</p>
 <div id="map" style="height:600px" ></div>
 <p>Et un autre petit bout de texte après</p>
+
 	<div class="legende" id="indice_carbone">
-		Service de régulation. Les arbres captent le carbone atmosphérique et le stockent dans leur biomasse et les horizons profonds du sol, contribuant à la lutte contre les gaz à effet de serre.
-		Données utilisées : Inventaires réalisés en 2016 et 2023 sur 36 parcelles de 400 m², incluant des mesures de diamètre à hauteur de poitrine (DHP) et des équations allométriques. Trois indicateurs composent l’indice : variation de carbone accumulé, productivité annuelle moyenne et stock de biomasse.
+		<h3>Captation de carbone</h3>
+		<p>Service de régulation. Les arbres captent le carbone atmosphérique et le stockent dans leur biomasse et les horizons profonds du sol, contribuant à la lutte contre les gaz à effet de serre.</p>
+		<p><strong>Données utilisées :</strong> Inventaires réalisés en 2016 et 2023 sur 36 parcelles de 400 m², incluant des mesures de diamètre à hauteur de poitrine (DHP) et des équations allométriques. Trois indicateurs composent l’indice : variation de carbone accumulé, productivité annuelle moyenne et stock de biomasse.</p>
 	</div>
-	<div class="legende" id="biodiversite">
-		Texte de l'indice biodiversité
+	
+	<div class="legende" id="indice_permeabilite">
+<h3>Perméabilité du sol :</h3>
+<p>Service de régulation. Les sols perméables permettent à l’eau de pluie de s’infiltrer vers la nappe phréatique, réduisant les volumes de ruissellement et les risques d’inondation.</p>
+<p><strong>Données utilisées :</strong> Classification théorique des surfaces selon leur potentiel de ruissellement (sol, couverture végétale et urbanisation), fondée sur les numéros de courbes de ruissellement (Cronshey, 1986).</p>
+</div>
+<div class="legende" id="indice_temperature">
+<h3>Température de surface : </h3>
+<p>Service de régulation. Les surfaces minéralisées créent le phénomène des îlots de chaleur durant l’été. En revanche, les écosystèmes forestiers rafraîchissent l’atmosphère par la transpiration foliaire et la création d’ombre. En hiver, ils retiennent la chaleur et réduisent la force du vent.</p>
+<p><strong>Données utilisées :</strong> Données de télédétection (bande thermale Landsat 8/9) acquises entre 2019 et 2023 et données issues de 57 sondes de température insérées dans le sol.</p>
 	</div>
-	<div class="legende" id="temperature">
-		Texte de l'indice température
-	</div>	
+<div class="legende" id="indice_biodiversite">
+<h3>Biodiversité </h3>
+<p>Service de support. Une plus grande diversité végétale améliore la résilience des forêts et amplifie les services rendus. </p>
+<p><strong>Données utilisées :</strong> Données issues de l’inventaire floristique de 2009 (plantes vasculaires) et de l’inventaire forestier de 2016 (diversité arborée). </p>
+	</div>
+<div class="legende" id="indice_service_culturel">
+<h3>Interaction humaine avec les écosystèmes</h3>
+<p>Service culturel. La nature urbaine procure des bienfaits physiques et mentaux qui augmentent avec la fréquence d’utilisation et la diversité des activités pratiquées. </p>
+<p><strong>Données utilisées :</strong>  Questionnaire distribué à la communauté universitaire. Deux indicateurs ont été retenus : fréquence d’utilisation et nombre moyen d’usages distincts par écosystème. Les données ont été normalisées et combinées.
+	</div>
+<div class="legende" id="indice_champignons">
+<h3>Cueillette de champignons </h3>
+<p>Service d’approvisionnement. Les champignons comestibles représentent une ressource alimentaire croissante, aussi bien pour les humains que pour la faune urbaine. </p>
+<p><strong>Données utilisées :</strong> Évaluation de la probabilité d’occurrence de neuf espèces comestibles — bolet orangé, bolet à pied glabrescent, chanterelle commune, chanterelle en tube, morille blonde, champignon crabe, pleurote du peuplier, marasmes des oréades et coprin chevelu — selon l’âge de la forêt, le type d’arbres et la nature du sol. Chaque écosystème a reçu une note moyenne ramenée à un indice de 1 à 5.</p>
+	</div>
+<div class="legende" id="indice_mortalite">
+<h3>Mortalité </h3>
+<p>La mortalité massive des arbres pose un risque majeur pour les écosystèmes forestiers en perturbant leur structure et leur fonctionnement. Elle modifie la composition végétale, affecte le cycle des nutriments, réduit la séquestration du carbone et favorise l'invasion d'espèces exotiques, affaiblissant la résilience des forêts. </p>
+<p><strong>Données utilisées :</strong> Comparaison des inventaires de 2016 et 2023. L’indice de risque correspond à la proportion moyenne d’arbres morts par écosystème, exprimée en pourcentage et normalisée.</p>
+	</div>
+<div class="legende" id="indice_maladies">
+<h3>Maladies </h3>
+<p>Les maladies affectant les écosystèmes peuvent inclure des infections causées par des champignons, des bactéries ou des virus. Ces pathogènes peuvent rapidement se propager perturbant les dynamiques des populations et affaiblissant les capacités de résilience des écosystèmes. </p>
+<p><strong>Données utilisées :</strong> Évaluation de l’état de santé des arbres en 2023 avec la méthode MSCR (catégories M, S, C, R et arbres morts). Les cotes ont été converties en scores numériques, moyennées et normalisées.</p>
+	</div>
+<div class="legende" id="indice_depots_de_neige">
+<h3>Dépôts de neige </h3>
+<p>Les dépôts excessifs de neige peuvent casser les branches et comprimer les jeunes plants, ralentissant leur croissance. Le sel de route mêlé à la neige augmente la salinité des sols, provoquant un stress hydrique et des déséquilibres nutritifs. Cela peut entraîner la mort des espèces sensibles, avec des symptômes tels que le brunissement des feuilles et le dépérissement des branches. </p>
+<p><strong>Données utilisées :</strong> Cartographie des dépôts par drone (DJI Mini 2) et application Mergin Maps. Le pourcentage de recouvrement de chaque écosystème par les dépôts a été calculé et transformé en indice de risque. </p>
+	</div>
+<div class="legende" id="indice_intemperies">
+<h3>Intempéries</h3>
+<p>Des tempêtes violentes peuvent provoquer des cassures ou des déracinements d’arbres, affectant la stabilité des écosystèmes. L’endurance d’un arbre face aux vents et aux intempéries est déterminée, en partie, par le type de ses racines : pivotantes, fasciculaires ou adventives.  </p>
+<p><strong>Données utilisées :</strong> Longueurs maximales des racines par espèce tirées de la littérature. Calcul d’une moyenne pondérée par écosystème, normalisée pour générer un indice de risque. </p>
+	</div>
+<div class="legende" id="indice_especes_envahissantes">
+<h3>Espèces exotiques envahissantes </h3>
+<p>L’introduction d’espèces exotiques et envahissantes perturbe les écosystèmes locaux en entrant en compétition avec les espèces indigènes. Cette compétition désavantage les espèces locales, menant à leur déclin ou disparition, affectant les interactions écologiques et le fonctionnement global de l’écosystème. </p>
+<p><strong>Données utilisées :</strong> Données utilisées : Recensement géolocalisé des occurrences de six espèces exotiques en août 2023, soit l’iris faux-acore, le nerprun bourdaine, la renouée du Japon, le roseau commun, la salicaire pourpre et l’érable de Norvège. Le nombre d’occurrences par hectare a été utilisé pour générer un indice de risque. </p>
+		</div>
+	
 	<div class="legende" id="Combine">
 		Importance à donner à chaque indice pour le combiné : <br />
 	</div>
@@ -171,7 +219,7 @@
 			
 			if (e.layer.id) { // L'événement se déclenche pour d'autres raisons?!				
 				
-				console.log(cleanToId(e.layer.id))
+				//console.log(cleanToId(e.layer.id))
 				
 				$(".legende").hide();
 				$("#"+cleanToId(e.layer.id)).show();
