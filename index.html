@@ -102,7 +102,7 @@
 <p><strong>Données utilisées :</strong> Données utilisées : Recensement géolocalisé des occurrences de six espèces exotiques en août 2023, soit l’iris faux-acore, le nerprun bourdaine, la renouée du Japon, le roseau commun, la salicaire pourpre et l’érable de Norvège. Le nombre d’occurrences par hectare a été utilisé pour générer un indice de risque. </p>
 		</div>
 	
-	<div class="legende" id="Combine">
+	<div class="legende" id="combine">
 		Importance à donner à chaque indice pour le combiné : <br />
 	</div>
 </aside>
@@ -189,15 +189,15 @@
 			"Indice de risque global":"Indice global risques",
 			
 			// Dé-commenter cette ligne pour ré-activer la création d'un indice personnalisé
-			// Combine:etiquette_indices_combines,
+			combine:etiquette_indices_combines,
 			
 		}
 		
-		let a_enlever_du_calcul = ["Type", "Indice écosystémique global", "Indice de risque global","Combine"]
+		let a_enlever_du_calcul = ["Type", "Indice écosystémique global", "Indice de risque global","combine"]
 		
 		for (let [cle,etiquette] of Object.entries(indices)) {
 			if (!(a_enlever_du_calcul.map(cleanToId).includes(cleanToId(cle)))) {
-				$('.legende#Combine').append(`${etiquette} : <input type="range" id="${cleanToId(cle)}"/><br />`);
+				$('.legende#combine').append(`${etiquette} : <input type="range" id="${cleanToId(cle)}"/><br />`);
 			}
 		}
 
@@ -218,7 +218,7 @@
 					}
 				}
 				
-				feature.properties.Combine = somme_valeurs / somme_poids
+				feature.properties.combine = somme_valeurs / somme_poids
 				
 			}
 			
@@ -286,12 +286,12 @@
 			let couche = L.geoJSON(layers_picom, {
     		style: function (feature) {
 				return {
-					fillColor: getColorGradient(feature.properties['Combine']),
-					color: getColorGradient(feature.properties['Combine']),
+					fillColor: getColorGradient(feature.properties['combine']),
+					color: getColorGradient(feature.properties['combine']),
 					fillOpacity: fillOpacity
 				};
 			}})	
-			couche.id = "Combine";
+			couche.id = "combine";
 			
 			layerControl.removeLayer(couches[etiquette_indices_combines]);
 			map.removeLayer(couches[etiquette_indices_combines]);
