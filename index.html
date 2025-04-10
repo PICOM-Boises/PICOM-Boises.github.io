@@ -310,14 +310,18 @@
 		legend.onAdd = function (map) {
 
 		    var div = L.DomUtil.create('div', 'info echelle_couleurs'),
-		        grades = [0,1,2,3,4],
+		        grades = [null,0,1,2,3,4],
 		        labels = [];
-
+				
 				for (var i = 0; i < grades.length; i++) {
-		        div.innerHTML +=
-		            '<i style="background:' + getColorGradient(grades[i] + 1) + '"></i> ' +
-		            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-		    }
+					
+					color_label = 
+						grades[i] == null ?
+						"N/D<br />":
+						grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br/>' : '+')					
+					
+		        	div.innerHTML += '<i style="background:' + getColorGradient(grades[i]==null?null:grades[i]+1) + '"></i> ' + color_label;
+		    	}
 
 		    return div;
 		};
