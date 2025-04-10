@@ -113,6 +113,8 @@
 	<div class="legende" id="combine">
 		<h3>Le titre</h3>
 		<p>Et le texte qui explique pourquoi on offre un indice personnalisé et comment l'utiliser.</p>
+		<div id="conteneur" style="column-count:2">
+		</div>
 	</div>
 </aside>
 </article>
@@ -206,7 +208,7 @@
 		
 		for (let [cle,etiquette] of Object.entries(indices)) {
 			if (!(a_enlever_du_calcul.map(cleanToId).includes(cleanToId(cle)))) {
-				$('.legende#combine').append(`${etiquette} : <input type="range" id="${cleanToId(cle)}"/><br />`);
+				$('.legende#combine #conteneur').append(`${etiquette} : <input type="range" id="${cleanToId(cle)}"/><br />`);
 			}
 		}
 
