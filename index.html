@@ -123,7 +123,9 @@
 		const fillOpacity = 0.75;
 		
 		function getColorGradient(d) {
-		    return d > 4 ? '#800026' :
+			console.log(d)
+		    return d == null ? '#cccccc' :
+				   d > 4 ? '#800026' :
 		           d > 3  ? '#E31A1C' :
 		           d > 2   ? '#FD8D3C' :
 		           d > 1   ? '#FED976' :
